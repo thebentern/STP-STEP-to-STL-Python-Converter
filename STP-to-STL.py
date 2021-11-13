@@ -37,19 +37,12 @@ def converter(filesPath, totalFiles, file):
     pf = doc.addObject("Part::Feature","MyShape")
     pf.Shape = shape
 
-    if not os.path.exists(filesPath + "/Converted-STLs"):
-        os.makedirs(filesPath + "/Converted-STLs")
-
-    if not os.path.exists(filesPath + "/OriginalFiles"):
-        os.makedirs(filesPath + "/OriginalFiles")
-
-    newName = filesPath + "/Converted-STLs/" + file + ".stl"
+    newName = filesPath + file + ".stl"
     Mesh.export([pf], newName)
-    os.replace(filesPath + "/" + file, filesPath + "/OriginalFiles/" + file)
 
 def main():
 
-    filesPath = "./3DModelsToConvert"
+    filesPath = "./"
     onlyfiles = [f for f in listdir(filesPath) if isfile(join(filesPath, f))]
     totalFiles = len(onlyfiles)
     
